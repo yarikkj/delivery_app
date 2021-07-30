@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @courier.name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @courier.email %>
+</p>
+
+<%= link_to 'Edit', edit_courier_path(@courier) %> |
+<%= link_to 'Back', couriers_path %>
+
+
+<%= render 'packages/form', package: @package %>
+
+
+<h1>Packages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Track number</th>
+      <th>Delivery status</th>
+      <th>Courier</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @packages.each do |package| %>
+      <tr>
+        <td><%= link_to package.track_number, package %></td>
+        <td><%= package.delivery_status ? "delivered" : "inproces" %></td>
+        <td><%= link_to package.courier.name, package.courier %></td>
+        <td><%= link_to('Deliver', package_path(package, {package: {delivery_status:true}}), method: :put) if package.delivery_status == false %></td>
+        <td><%= link_to 'Destroy', package, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,31 @@
+<%= form_with(model: package) do |form| %>
+  <% if package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(package.errors.count, "error") %> prohibited this package from being saved:</h2>
+
+      <ul>
+        <% package.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :track_number %>
+    <%= form.text_field :track_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :delivery_status %>
+    <%= form.check_box :delivery_status %>
+  </div>
+
+  
+  <%= form.hidden_field :courier_id %>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Track number:</strong>
+  <%= @package.track_number %>
+</p>
+
+<p>
+  <strong>Delivery status:</strong>
+  <%= @package.delivery_status %>
+</p>
+
+<p>
+  <strong>Courier:</strong>
+  <%= @package.courier.name %>
+</p>
+
+<%= link_to 'Edit', edit_package_path(@package) %> |
+<%= link_to 'Back', packages_path %>
